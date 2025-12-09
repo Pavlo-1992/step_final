@@ -16,4 +16,4 @@ tags = {
 }
 
 
-zone_name = "devops8.test-danit.com"
+zone_name = "devops9.test-danit.com"
