@@ -3,7 +3,7 @@ terraform {
     bucket         = "tf-state-danit-devops-9"
     key            = "eks/terraform.tfstate"
     encrypt        = true
-    dynamodb_table = "lock-tf-eks"
+    #dynamodb_table = "lock-tf-eks"
     # dynamo key LockID
     # Params tekan from -backend-config when terraform init
     #region = 
