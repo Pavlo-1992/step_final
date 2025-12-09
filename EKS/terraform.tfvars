@@ -6,8 +6,8 @@ region = "eu-central-1"
 name = "danit"
 
 
-vpc_id = "vpc-0bb5f828fddfbf9e7"
-subnets_ids = ["subnet-025cd4585ef90536e", "subnet-04942409f4d92aa7e", "subnet-0c9c5d9a519bd2253"]
+vpc_id = "vpc-0de3c0859746a564a"
+subnets_ids = ["subnet-09aed3e8d25474fe6", "subnet-0517b545ebcbf26fe", "subnet-0cbe4562bfc4883fd"]
 
 
 tags = {
