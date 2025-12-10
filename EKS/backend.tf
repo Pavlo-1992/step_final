@@ -4,7 +4,7 @@ terraform {
     key            = "eks/terraform.tfstate"
     encrypt        = true
     region         = "eu-central-1"
-    #dynamodb_table = "lock-tf-eks"
+    dynamodb_table = "lock-tf-eks"
     # dynamo key LockID
     #profile = 
   }
