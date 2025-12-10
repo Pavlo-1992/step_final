@@ -40,6 +40,13 @@ resource "helm_release" "argocd" {
     name  = "server.extraArgs[0]"
     value = "--insecure"
   }
+}
 
-  depends_on = [module.eks, helm_release.nginx_ingress]
+resource "aws_route53_record" "argocd" {
+  zone_id = data.aws_route53_zone.zone.zone_id
+  name    = local.argocd_domain
+  type    = "CNAME"
+  ttl     = 300
+  records = [kubernetes_service.ingress_nginx.status[0].load_balancer[0].ingress[0].hostname]
+  depends_on = [helm_release.argocd]
 }
