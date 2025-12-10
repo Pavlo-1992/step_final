@@ -1,3 +1,12 @@
+data "aws_route53_zone" "zone" {
+  name         = var.zone_name
+  private_zone = false
+}
+
+locals {
+  argocd_domain = "argocd.danit.${var.zone_name}"
+}
+
 resource "helm_release" "argocd" {
   name             = "argocd"
   namespace        = "argocd"
@@ -19,7 +28,7 @@ resource "helm_release" "argocd" {
 
   set {
     name  = "server.ingress.hosts[0]"
-    value = "argocd.${var.name}.devops9.test-danit.com"
+    value = local.argocd_domain
   }
 
   set {
@@ -31,6 +40,13 @@ resource "helm_release" "argocd" {
     name  = "server.extraArgs[0]"
     value = "--insecure"
   }
+}
 
-  depends_on = [module.eks, helm_release.nginx_ingress]
+resource "aws_route53_record" "argocd" {
+  zone_id = data.aws_route53_zone.zone.zone_id
+  name    = local.argocd_domain
+  type    = "CNAME"
+  ttl     = 300
+  records = [kubernetes_service.ingress_nginx.status[0].load_balancer[0].ingress[0].hostname]
+  depends_on = [helm_release.argocd]
 }

@@ -6,7 +6,6 @@ resource "helm_release" "nginx_ingress" {
   namespace        = "kube-system"
   create_namespace = true
 
-  # This is the marker that node is not edge, we add label system in eks node group
   set {
     name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-ssl-cert"
     value = module.acm.acm_certificate_arn
@@ -34,5 +33,37 @@ resource "helm_release" "nginx_ingress" {
   set {
     name = "controller.service.targetPorts.https"
     value = "http"
+  }
+}
+
+resource "kubernetes_service" "ingress_nginx" {
+  metadata {
+    name      = "ingress-nginx"
+    namespace = "kube-system"
+    labels = {
+      app = "ingress-nginx"
+    }
+  }
+
+  spec {
+    type = "LoadBalancer"
+
+    selector = {
+      app.kubernetes.io/name = "ingress-nginx"
+    }
+
+    port {
+      name        = "http"
+      protocol    = "TCP"
+      port        = 80
+      target_port = 80
+    }
+
+    port {
+      name        = "https"
+      protocol    = "TCP"
+      port        = 443
+      target_port = 443
+    }
   }
 }
