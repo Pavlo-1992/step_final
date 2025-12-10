@@ -49,7 +49,7 @@ resource "kubernetes_service" "ingress_nginx" {
     type = "LoadBalancer"
 
     selector = {
-      app.kubernetes.io/name = "ingress-nginx"
+      "app.kubernetes.io/name" = "ingress-nginx"
     }
 
     port {
