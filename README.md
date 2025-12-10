@@ -12,7 +12,11 @@ terraform init, plan, apply
 
 aws eks --region eu-central-1 update-kubeconfig --name danit
 
+wait 10 min!!!!
+
 use outputs argo_url
+
 user - admin
 password 
+
 kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d && echo
