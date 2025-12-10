@@ -31,6 +31,4 @@ resource "helm_release" "argocd" {
     name  = "server.extraArgs[0]"
     value = "--insecure"
   }
-
-  depends_on = [module.eks, helm_release.nginx_ingress]
 }
