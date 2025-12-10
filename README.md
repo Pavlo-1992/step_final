@@ -1,6 +1,6 @@
 For cluster:
 
-cd eks
+cd eks+argo/
 
 mfa-login.sh - automates entering MFA code, obtaining temporary AWS credentials.
 
