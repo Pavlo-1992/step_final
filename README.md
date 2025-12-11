@@ -6,7 +6,7 @@ mfa-login.sh - automates entering MFA code, obtaining temporary AWS credentials.
 
 chmod +x mfa-login.sh - before launch.
 
-./mfa-login.sh 
+eval $(./mfa-login.sh)
 
 terraform init, plan, apply 
 

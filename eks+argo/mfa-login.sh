@@ -16,11 +16,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Export credentials
-export AWS_ACCESS_KEY_ID=$(echo $creds | jq -r .Credentials.AccessKeyId)
-export AWS_SECRET_ACCESS_KEY=$(echo $creds | jq -r .Credentials.SecretAccessKey)
-export AWS_SESSION_TOKEN=$(echo $creds | jq -r .Credentials.SessionToken)
+echo "export AWS_ACCESS_KEY_ID=$(echo $creds | jq -r .Credentials.AccessKeyId)"
+echo "export AWS_SECRET_ACCESS_KEY=$(echo $creds | jq -r .Credentials.SecretAccessKey)"
+echo "export AWS_SESSION_TOKEN=$(echo $creds | jq -r .Credentials.SessionToken)"
 
-# Verifying
-echo "Temporary credentials successfully received. Checking..."
-
-aws sts get-caller-identity
