@@ -36,34 +36,3 @@ resource "helm_release" "nginx_ingress" {
   }
 }
 
-resource "kubernetes_service" "ingress_nginx" {
-  metadata {
-    name      = "ingress-nginx"
-    namespace = "kube-system"
-    labels = {
-      app = "ingress-nginx"
-    }
-  }
-
-  spec {
-    type = "LoadBalancer"
-
-    selector = {
-      "app.kubernetes.io/name" = "ingress-nginx"
-    }
-
-    port {
-      name        = "http"
-      protocol    = "TCP"
-      port        = 80
-      target_port = 80
-    }
-
-    port {
-      name        = "https"
-      protocol    = "TCP"
-      port        = 443
-      target_port = 443
-    }
-  }
-}
