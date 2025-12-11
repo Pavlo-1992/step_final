@@ -11,7 +11,7 @@ COPY app.py .
 RUN pip install flask
 
 # Порт
-EXPOSE 8000
+EXPOSE 8080
 
 # Команда запуску
 CMD ["python", "app.py"]

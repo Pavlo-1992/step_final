@@ -4,6 +4,10 @@ provider "aws" {
   profile = var.iam_profile
 }
 
+data "aws_eks_cluster" "danit" {
+  name = aws_eks_cluster.danit.name
+}
+
 
 provider "kubernetes" {
   host                   = aws_eks_cluster.danit.endpoint

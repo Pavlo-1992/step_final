@@ -42,6 +42,9 @@ resource "aws_route53_record" "argocd" {
   name    = local.argocd_domain
   type    = "CNAME"
   ttl     = 300
-  records = [kubernetes_service.ingress_nginx.status[0].load_balancer[0].ingress[0].hostname]
+  records = [
+    data.kubernetes_service.nginx_ingress.status[0].load_balancer[0].ingress[0].hostname
+  ]
   depends_on = [helm_release.argocd]
 }
+

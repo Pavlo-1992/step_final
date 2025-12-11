@@ -8,6 +8,15 @@ chmod +x mfa-login.sh - before launch.
 
 eval $(./mfa-login.sh)
 
+create dynamodb create-table
+
+aws dynamodb create-table \
+  --table-name lock-tf-eks \
+  --attribute-definitions AttributeName=LockID,AttributeType=S \
+  --key-schema AttributeName=LockID,KeyType=HASH \
+  --billing-mode PAY_PER_REQUEST
+
+
 terraform init, plan, apply 
 
 aws eks --region eu-central-1 update-kubeconfig --name danit

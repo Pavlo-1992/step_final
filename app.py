@@ -14,7 +14,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
             self.end_headers()
 
 if __name__ == "__main__":
-    server_address = ("0.0.0.0", 8000)
+    server_address = ("0.0.0.0", 8080)
     httpd = HTTPServer(server_address, SimpleHandler)
-    print("Starting server on port 8000...")
+    print("Starting server on port 8080...")
     httpd.serve_forever()
