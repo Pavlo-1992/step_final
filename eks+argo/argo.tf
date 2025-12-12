@@ -1,7 +1,3 @@
-locals {
-  argocd_domain = "argocd.danit.${var.zone_name}"
-}
-
 resource "helm_release" "argocd" {
   name             = "argocd"
   namespace        = "argocd"
@@ -34,5 +30,35 @@ resource "helm_release" "argocd" {
   set {
     name  = "server.extraArgs[0]"
     value = "--insecure"
+  }
+
+  set {
+    name  = "dex.enabled"
+    value = "false"
+  }
+
+  set {
+    name  = "notifications.enabled"
+    value = "false"
+  }
+
+  set {
+    name  = "applicationSet.enabled"
+    value = "false"
+  }
+
+  set {
+    name  = "controller.replicas"
+    value = "1"
+  }
+
+  set {
+    name  = "repoServer.replicas"
+    value = "1"
+  }
+
+  set {
+    name  = "server.replicas"
+    value = "1"
   }
 }
