@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         app: myapp
+      annotations:
+        redeploy-check: "commit-1"
     spec:
       containers:
         - name: myapp
