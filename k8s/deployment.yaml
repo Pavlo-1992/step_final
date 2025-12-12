@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: myapp
-          image: savanchukpavlo/step_5_backend:argo
+          image: savanchukpavlo/step_5_backend:test
           ports:
             - containerPort: 8080
