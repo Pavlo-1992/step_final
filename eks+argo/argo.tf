@@ -1,3 +1,7 @@
+locals {
+  argocd_domain = "argocd.danit.${var.zone_name}"
+}
+
 resource "helm_release" "argocd" {
   name             = "argocd"
   namespace        = "argocd"
