@@ -8,7 +8,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
             self.send_header("Content-type", "text/plain")
             self.end_headers()
             pod_ip = socket.gethostbyname(socket.gethostname())
-            self.wfile.write(f"Hello from pod with IP: {pod_ip}".encode())
+            self.wfile.write(f"Hello from TEST pod with IP: {pod_ip}".encode())
         else:
             self.send_response(404)
             self.end_headers()
