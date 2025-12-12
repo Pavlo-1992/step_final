@@ -6,8 +6,8 @@ resource "aws_eks_node_group" "danit" {
 
   scaling_config {
     desired_size = 2
-    max_size     = 1
-    min_size     = 3
+    max_size     = 3
+    min_size     = 1
   }
 
   instance_types = ["t3.medium"]
