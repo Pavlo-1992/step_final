@@ -16,21 +16,18 @@ aws dynamodb create-table \
   --key-schema AttributeName=LockID,KeyType=HASH \
   --billing-mode PAY_PER_REQUEST
 
-
 terraform init, plan, apply 
 
 aws eks --region eu-central-1 update-kubeconfig --name danit
 
 wait 10 min!!!!
 
-
 in root directory 
-kubectl apply -f k8s/
+kubectl apply -f k8s/argocd-application.yaml
 
-Optional
-
+Optional for test:
 use outputs argo_url
-
 user - admin
+
 kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d && echo
 
