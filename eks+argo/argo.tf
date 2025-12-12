@@ -12,6 +12,11 @@ resource "helm_release" "argocd" {
   version    = "5.51.6"
 
   set {
+    name  = "server.ingress.annotations.external-dns\\.alpha\\.kubernetes\\.io/hostname"
+    value = local.argocd_domain
+  }
+
+  set {
     name  = "server.ingress.enabled"
     value = "true"
   }
